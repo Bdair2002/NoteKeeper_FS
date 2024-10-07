@@ -110,3 +110,34 @@ body {
   cursor: pointer;
   background-color: var(--primary-darker);
 }
+dialog {
+  margin: auto;
+  padding: 4rem;
+  background-color: var(--primary);
+}
+
+::backdrop {
+  background-color: var(--black);
+  opacity: 0.75;
+}
+.dialog__title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+.btns {
+  display: flex;
+}
+.btn {
+  padding: 0.5rem 1rem;
+}
+.confirm {
+  background-color: var(--orange);
+  border: 1px solid var(--primary-darker);
+  margin-right: 1rem;
+}
+.cancel {
+  background-color: var(--primary);
+  border: 2px solid var(--orange);
+}
