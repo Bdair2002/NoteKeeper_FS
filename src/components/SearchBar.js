@@ -9,7 +9,7 @@ const SearchBar = () => {
 
   return (
     <div className="searchBar">
-      <span class="search-icon material-symbols-outlined">search</span>
+      <span className="search-icon material-symbols-outlined">search</span>
       <input
         className="searchBar__input"
         type="text"
