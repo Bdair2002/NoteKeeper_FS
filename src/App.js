@@ -9,7 +9,7 @@ function App() {
     <div className="app">
       <h1 className="title">Note Keeping App</h1>
       <SearchBar />
-      <AddNote onAdd={createNote} />
+      {/* <AddNote onAdd={createNote} /> */}
       {loading ? (
         <p>Loading...</p>
       ) : (
