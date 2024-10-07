@@ -10,9 +10,11 @@ body {
 }
 :root {
   --white: #fafffd;
+  --white-secondary: #dff8eb;
   --black: #342e37;
   --primary: #1c7c54;
   --primary-darker: #0a5d3b;
   --orange: #fa824c;
   --blue: #3c91e6;
+  --gray: #d8e2dc;
 }
