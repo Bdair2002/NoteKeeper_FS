@@ -32,7 +32,7 @@ const useNotes = () => {
 
   const removeNote = async (id) => {
     await deleteNote(id);
-    setNotes(notes.filter((n) => n.id !== id));
+    setNotes(notes.filter((n) => n._id !== id));
   };
 
   return { notes, loading, createNote, editNote, removeNote };

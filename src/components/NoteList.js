@@ -1,10 +1,15 @@
 import NoteCard from "./NoteCard";
 
-const NoteList = ({ notes, onDelete }) => {
+const NoteList = ({ openDialog, notes, onDelete }) => {
   return (
     <div className="note-list">
       {notes.map((note) => (
-        <NoteCard key={note._id} note={note} onDelete={onDelete} />
+        <NoteCard
+          openDialog={openDialog}
+          key={note._id}
+          note={note}
+          onDelete={onDelete}
+        />
       ))}
     </div>
   );

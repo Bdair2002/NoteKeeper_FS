@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
 
-const NoteCard = ({ note, onDelete }) => {
+const NoteCard = ({ openDialog, note, onDelete }) => {
   const [mouseHovered, setmouseHovered] = useState(false);
   return (
     <div
@@ -23,7 +23,14 @@ const NoteCard = ({ note, onDelete }) => {
         })}
       </p>
       {mouseHovered && (
-        <span className="delete material-symbols-outlined">delete</span>
+        <span
+          onClick={() => {
+            openDialog(note);
+          }}
+          className="delete material-symbols-outlined"
+        >
+          delete
+        </span>
       )}
     </div>
   );

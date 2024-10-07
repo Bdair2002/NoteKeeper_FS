@@ -3,7 +3,23 @@ import SearchBar from "./components/SearchBar";
 import AddNote from "./components/AddNote";
 import NoteList from "./components/NoteList";
 import useNotes from "./hooks/useNotes";
+import ConfirmDeleteModal from "./components/ConfirmDeleteModal";
+import { useRef, useState } from "react";
 function App() {
+  const [selectedNote, setselectedNote] = useState(null);
+  const dialogRef = useRef(null);
+  const openDialog = (note) => {
+    setselectedNote(note);
+    dialogRef.current.showModal();
+  };
+  const closeDialog = () => {
+    dialogRef.current.close();
+  };
+  const handleDelete = () => {
+    removeNote(selectedNote._id);
+    closeDialog();
+  };
+
   const { notes, loading, createNote, removeNote } = useNotes();
   return (
     <div className="app">
@@ -13,8 +29,17 @@ function App() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <NoteList notes={notes} onDelete={removeNote} />
+        <NoteList
+          openDialog={openDialog}
+          notes={notes}
+          onDelete={handleDelete}
+        />
       )}
+      <ConfirmDeleteModal
+        closeDialog={closeDialog}
+        handleDelete={handleDelete}
+        dialogRef={dialogRef}
+      />
     </div>
   );
 }
