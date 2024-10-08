@@ -13,7 +13,7 @@ export const addNote = async (note) => {
   return response.data;
 };
 export const updateNote = async (id, note) => {
-  const response = await axios.patch(`${API_URL}/${id}`, note);
+  const response = await axios.put(`${API_URL}/${id}`, note);
   return response.data;
 };
 export const deleteNote = async (id) => {

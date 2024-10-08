@@ -1,8 +1,11 @@
-const ConfirmDeleteModal = ({ handleDelete, dialogRef, closeDialog }) => {
+const ConfirmDeleteModal = ({ handleDelete, deleteRef, closeDialog }) => {
   return (
-    <dialog ref={dialogRef}>
+    <dialog ref={deleteRef}>
       <form method="dialog">
-        <p className="dialog__title">This note will be deleted</p>
+        <p className="dialog__title">Note Deletion</p>
+        <p className="dialog__desc">
+          This note will be deleted permanently, are you sure?
+        </p>
         <div className="btns">
           <button onClick={handleDelete} className="btn confirm">
             Confirm

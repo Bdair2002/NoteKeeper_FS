@@ -112,8 +112,14 @@ body {
 }
 dialog {
   margin: auto;
-  padding: 4rem;
-  background-color: var(--primary);
+  padding: 1rem 1rem;
+  width: 30rem;
+  height: 7rem;
+  background-color: var(--white);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 0px 10px var(--primary-darker);
+  position: relative;
 }
 
 ::backdrop {
@@ -123,23 +129,32 @@ dialog {
 .dialog__title {
   font-size: 1.3rem;
   font-weight: 600;
-  color: var(--white);
+  color: var(--black);
   margin-bottom: 1rem;
 }
 .btns {
   display: flex;
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
 }
 .btn {
   padding: 0.5rem 1rem;
 }
 .confirm {
-  background-color: var(--orange);
-  border: 1px solid var(--primary-darker);
-  margin-right: 1rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: red;
 }
 .cancel {
-  background-color: var(--primary);
-  border: 2px solid var(--orange);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--black);
+}
+.dialog__desc {
+  font-size: 1rem;
 }
 .add_note_btn {
   display: flex;
@@ -203,12 +218,31 @@ dialog {
 .notes_data {
   display: flex;
 }
+
 .new_note-control .btns {
-  width: 40%;
+  margin: auto;
+  position: static;
 }
-.new_note-control .btn {
-  font-size: 0.8rem;
-  padding: 10px 10px;
+.new_note-control .confirm {
+  background-color: var(--primary);
+  color: var(--white);
+  width: 70px;
+  padding: 3px 10px;
+  margin-right: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.new_note-control .cancel {
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  width: 70px;
+  padding: 3px 10px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.new_note-control .cancel:hover,
+.new_note-control .confirm:hover {
+  cursor: pointer;
 }
 .btn-search {
   margin-left: 5px;
@@ -235,4 +269,38 @@ dialog {
   border-radius: 5px;
   font-size: 1rem;
   font-weight: 500;
+}
+.edit_title {
+  display: block;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 1rem;
+  width: 100%;
+}
+.edit_content {
+  display: block;
+  outline: none;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--primary);
+  font-size: 1rem;
+  font-weight: 600;
+
+  color: var(--black);
+}
+.edit_modal {
+  height: 10rem;
+}
+.edit_modal .confirm {
+  color: var(--primary);
+}
+button:disabled {
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
