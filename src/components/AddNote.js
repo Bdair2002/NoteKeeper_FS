@@ -45,22 +45,27 @@ const AddNote = ({ onAdd }) => {
           </div>
           <div className="btns">
             <button
+              disabled={title.length === 0 || content.length === 0}
               onClick={() => {
                 onAdd({
                   title,
                   content,
                 });
+                setTitle("");
+                setContent("");
                 setIsClicked(false);
               }}
-              className="btn confirm"
+              className="confirm"
             >
-              Confirm
+              Add
             </button>
             <button
               onClick={() => {
+                setTitle("");
+                setContent("");
                 setIsClicked(false);
               }}
-              className="btn cancel"
+              className="cancel"
             >
               Cancel
             </button>

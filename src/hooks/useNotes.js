@@ -28,13 +28,17 @@ const useNotes = () => {
   }, []);
 
   const createNote = async (note) => {
-    const newNote = await addNote(note);
-    setNotes([...notes, newNote]);
+    try {
+      const newNote = await addNote(note);
+      setNotes([...notes, newNote]);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const editNote = async (id, updatedNote) => {
     const note = await updateNote(id, updatedNote);
-    setNotes(notes.map((n) => (n.id === id ? note : n)));
+    setNotes(notes.map((n) => (n._id === id ? note : n)));
   };
 
   const removeNote = async (id) => {

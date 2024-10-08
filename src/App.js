@@ -5,23 +5,36 @@ import NoteList from "./components/NoteList";
 import useNotes from "./hooks/useNotes";
 import ConfirmDeleteModal from "./components/ConfirmDeleteModal";
 import { useRef, useState } from "react";
+import EditNoteModal from "./components/EditNoteModal";
+
 function App() {
-  const [selectedNote, setselectedNote] = useState(null);
-  const dialogRef = useRef(null);
-  const openDialog = (note) => {
-    setselectedNote(note);
-    dialogRef.current.showModal();
+  const [selectedNote, setSelectedNote] = useState(null);
+  const deleteRef = useRef(null);
+  const editRef = useRef(null);
+  const refs = {
+    edit: editRef,
+    delete: deleteRef,
   };
-  const closeDialog = () => {
-    dialogRef.current.close();
+  const openDialog = (note, action) => {
+    setSelectedNote(note);
+    refs[action]?.current?.showModal();
+  };
+
+  const closeDialog = (action) => {
+    setSelectedNote(null);
+    refs[action]?.current?.close();
   };
   const handleDelete = () => {
     removeNote(selectedNote._id);
-    closeDialog();
+    closeDialog("delete");
   };
 
   const handleSearch = (query) => {
     searchNotesQuery(query);
+  };
+  const handleEdit = (id, note) => {
+    editNote(id, note);
+    closeDialog("delete");
   };
 
   const {
@@ -30,6 +43,7 @@ function App() {
     createNote,
     removeNote,
     fetched,
+    editNote,
     searchNotesQuery,
     found,
   } = useNotes();
@@ -53,11 +67,17 @@ function App() {
       ) : (
         <p> Failed to fetch data</p>
       )}
-
       <ConfirmDeleteModal
         closeDialog={closeDialog}
         handleDelete={handleDelete}
-        dialogRef={dialogRef}
+        deleteRef={deleteRef}
+      />
+
+      <EditNoteModal
+        selectedNote={selectedNote ? selectedNote : { title: "", content: "" }}
+        editRef={editRef}
+        closeDialog={closeDialog}
+        handleEdit={handleEdit}
       />
     </div>
   );

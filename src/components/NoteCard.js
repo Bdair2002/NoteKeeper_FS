@@ -5,6 +5,7 @@ const NoteCard = ({ openDialog, note }) => {
   return (
     <div
       className="note-card"
+      onClick={() => openDialog(note, "edit")}
       onMouseEnter={() => {
         setmouseHovered(true);
       }}
@@ -19,8 +20,9 @@ const NoteCard = ({ openDialog, note }) => {
       </p>
       {mouseHovered && (
         <span
-          onClick={() => {
-            openDialog(note);
+          onClick={(e) => {
+            e.stopPropagation();
+            openDialog(note, "delete");
           }}
           className="delete material-symbols-outlined"
         >
