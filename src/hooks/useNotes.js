@@ -11,6 +11,7 @@ const useNotes = () => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [fetched, setFetched] = useState(true);
+  const [found, setFound] = useState(true);
 
   useEffect(() => {
     const loadNotes = async () => {
@@ -40,8 +41,21 @@ const useNotes = () => {
     await deleteNote(id);
     setNotes(notes.filter((n) => n._id !== id));
   };
-
-  return { notes, loading, createNote, editNote, removeNote, fetched };
+  const searchNotesQuery = async (query) => {
+    const notes = await searchNotes(query);
+    notes.length === 0 ? setFound(false) : setFound(true);
+    setNotes(notes);
+  };
+  return {
+    notes,
+    loading,
+    createNote,
+    editNote,
+    removeNote,
+    fetched,
+    searchNotesQuery,
+    found,
+  };
 };
 
 export default useNotes;

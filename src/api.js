@@ -21,5 +21,7 @@ export const deleteNote = async (id) => {
   return response.data;
 };
 export const searchNotes = async (query) => {
-  const response = await axios.get(`${API_URL}/search?${query}`);
+  const url = query !== "" ? `${API_URL}/search?query=${query}` : `${API_URL}`;
+  const response = await axios.get(url);
+  return response.data.notes;
 };

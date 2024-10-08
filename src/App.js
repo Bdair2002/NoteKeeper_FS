@@ -20,21 +20,35 @@ function App() {
     closeDialog();
   };
 
-  const { notes, loading, createNote, removeNote, fetched } = useNotes();
+  const handleSearch = (query) => {
+    searchNotesQuery(query);
+  };
+
+  const {
+    notes,
+    loading,
+    createNote,
+    removeNote,
+    fetched,
+    searchNotesQuery,
+    found,
+  } = useNotes();
   return (
     <div className="app">
       <h1 className="title">Note Keeping App</h1>
-      <SearchBar />
+      <SearchBar onSearch={handleSearch} />
       <AddNote onAdd={createNote} />
       {fetched ? (
         loading ? (
           <p>Loading...</p>
-        ) : (
+        ) : found ? (
           <NoteList
             openDialog={openDialog}
             notes={notes}
             onDelete={handleDelete}
           />
+        ) : (
+          <p>No Notes Found</p>
         )
       ) : (
         <p> Failed to fetch data</p>
