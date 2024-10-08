@@ -20,21 +20,26 @@ function App() {
     closeDialog();
   };
 
-  const { notes, loading, createNote, removeNote } = useNotes();
+  const { notes, loading, createNote, removeNote, fetched } = useNotes();
   return (
     <div className="app">
       <h1 className="title">Note Keeping App</h1>
       <SearchBar />
-      {/* <AddNote onAdd={createNote} /> */}
-      {loading ? (
-        <p>Loading...</p>
+      <AddNote onAdd={createNote} />
+      {fetched ? (
+        loading ? (
+          <p>Loading...</p>
+        ) : (
+          <NoteList
+            openDialog={openDialog}
+            notes={notes}
+            onDelete={handleDelete}
+          />
+        )
       ) : (
-        <NoteList
-          openDialog={openDialog}
-          notes={notes}
-          onDelete={handleDelete}
-        />
+        <p> Failed to fetch data</p>
       )}
+
       <ConfirmDeleteModal
         closeDialog={closeDialog}
         handleDelete={handleDelete}
