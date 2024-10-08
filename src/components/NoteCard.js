@@ -1,7 +1,6 @@
 import { useState } from "react";
-import ConfirmDeleteModal from "./ConfirmDeleteModal";
 
-const NoteCard = ({ openDialog, note, onDelete }) => {
+const NoteCard = ({ openDialog, note }) => {
   const [mouseHovered, setmouseHovered] = useState(false);
   return (
     <div
@@ -16,11 +15,7 @@ const NoteCard = ({ openDialog, note, onDelete }) => {
       <h2 className="card__title">{note.title}</h2>
       <p className="card__content">{note.content}</p>
       <p className="date">
-        {new Date(note.createdAt).toLocaleString(undefined, {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
+        {new Date(note.createdAt).toLocaleDateString("en-GB")}
       </p>
       {mouseHovered && (
         <span

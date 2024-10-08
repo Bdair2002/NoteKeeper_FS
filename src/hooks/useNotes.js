@@ -10,12 +10,18 @@ import {
 const useNotes = () => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [fetched, setFetched] = useState(true);
 
   useEffect(() => {
     const loadNotes = async () => {
-      const fetchedNotes = await fetchNotes();
-      setNotes(fetchedNotes);
-      setLoading(false);
+      try {
+        const fetchedNotes = await fetchNotes();
+        setNotes(fetchedNotes);
+        setLoading(false);
+        setFetched(true);
+      } catch (error) {
+        setFetched(false);
+      }
     };
     loadNotes();
   }, []);
@@ -35,7 +41,7 @@ const useNotes = () => {
     setNotes(notes.filter((n) => n._id !== id));
   };
 
-  return { notes, loading, createNote, editNote, removeNote };
+  return { notes, loading, createNote, editNote, removeNote, fetched };
 };
 
 export default useNotes;

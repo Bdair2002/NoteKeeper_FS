@@ -141,3 +141,72 @@ dialog {
   background-color: var(--primary);
   border: 2px solid var(--orange);
 }
+.add_note_btn {
+  display: flex;
+  align-items: center;
+  padding: 5px 5px;
+  font-size: 0.8rem;
+  width: 6rem;
+  margin-top: 1rem;
+  background-color: var(--primary);
+  box-shadow: 1px 1px 10px var(--primary-darker),
+    1px 1px 10px var(--primary-darker) inset;
+  margin-bottom: 1.5rem;
+}
+.material-symbols-outlined {
+  transition: transform 0.3s ease;
+}
+.rotate {
+  transform: rotate(180deg);
+}
+.input_field {
+  position: relative;
+  margin-bottom: 1rem;
+}
+.input_field input {
+  height: 1.5rem;
+  text-indent: 0.5rem;
+  border: none;
+  border-bottom: 3px solid var(--black);
+  margin-right: 1rem;
+  outline: none;
+}
+.input_field label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  font-size: 0.8rem;
+  text-indent: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.input_field input:is(:focus, :valid) + label {
+  transform: translateY(-50%);
+  top: 0;
+  font-size: 0.6rem;
+}
+.add-note {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.new_note-control {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.notes_data {
+  display: flex;
+}
+.new_note-control .btns {
+  width: 40%;
+}
+.new_note-control .btn {
+  font-size: 0.8rem;
+  padding: 10px 10px;
+}
